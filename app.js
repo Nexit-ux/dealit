@@ -82,6 +82,10 @@ app.use((req , res , next) => {
     next();
 });
 
+app.get("/", (req, res) => {
+    res.redirect("/postings");
+});
+
 app.use("/postings" , postingRouter);
 app.use("/" , userRouter);
 
