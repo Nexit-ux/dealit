@@ -1,0 +1,92 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <!-- <h2>All Postings</h2> -->
+    <!-- <form method="GET" action="/postings/new">
+        <button>Create New</button>
+    </form> -->
+    <style>
+        #filters{
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+        }
+        .filter{
+          text-align: center;
+          margin-right: 3.5rem;
+          opacity: 0.7;
+        }
+        .filter:hover{
+          opacity: 1;
+          cursor: pointer;
+        }
+        .filter p{
+          font-size: 0.8rem;
+        }
+    </style>
+
+    <div id="filters">
+        <div class="filter">
+          <div><i class="fa-solid fa-car"></i></div>
+          <p>Cars</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-solid fa-motorcycle"></i></div>
+          <p>Bikes</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-solid fa-tv"></i></div>
+          <p>Electronics</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <p>Mobiles</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-solid fa-couch"></i></div>
+          <p>Furniture</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-solid fa-shirt"></i></div>
+          <p>Fashion</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-regular fa-building"></i></div>
+          <p>Properties</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <p>Spares</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-solid fa-book"></i></div>
+          <p>Books</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-solid fa-baseball-bat-ball"></i></div>
+          <p>Sports</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-solid fa-ticket"></i></div>
+          <p>Tickets</p>
+        </div>
+        <div class="filter">
+          <div><i class="fa-regular fa-rectangle-list"></i></div>
+          <p>Others</p>
+        </div>
+    </div>   
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+        <% for(let posting of allPostings) { %>
+            <a href="/postings/<%= posting._id %>" class="posting-link">
+            <div class="card">
+                <img src="<%= posting.image[0].url%>" class="card-img-top" alt="posting Image" style="height: 20rem;"/>
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                    <p class="card-text"><b><%= posting.title %></b></p>
+                    <p class="card-text">&#8377;<%= posting.price.toLocaleString("en-IN") %></p>
+                </div>
+            </div>
+            </a>
+        <% } %>
+    </div>
+</body>

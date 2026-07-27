@@ -1,0 +1,67 @@
+<style>
+  .btn-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    background-color: #42b883;
+    color: white;
+    font-size: 0.8rem;
+  }
+  .btn-search:hover {
+    background-color: #42b883;
+    color: white;
+  }
+  .btn-search i{
+    display: inline;
+  }
+  .search-inp{
+    margin-left: 4rem;
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 0.8rem;
+  }
+</style>
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/postings"><i class="fa-brands fa-files-pinwheel"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/postings">Explore</a>
+        </li>
+      </ul>
+
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search">
+      <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" aria-label="Search"/>
+      <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>  Search</button>
+      </form>
+      </div>
+
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/postings/new">Post ad</a>
+        </li>
+        <% if(!currUser) { %>
+          <li class="nav-item">
+            <b><a class="nav-link" aria-current="page" href="/signup">SignUp</a></b>
+          </li>
+          <li class="nav-item">
+            <b><a class="nav-link" href="/login">Login</a></b>
+          </li>
+        <% } %>
+        
+        <% if(currUser) { %>
+          <li class="nav-item">
+          <b><a class="nav-link" href="/logout">Logout</a></b>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br><br>

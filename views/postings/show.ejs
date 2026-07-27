@@ -1,0 +1,39 @@
+<% layout("/layouts/boilerplate") %>
+<script>
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    const coordinates = <%- JSON.stringify(posting.geometry.coordinates) %>;
+</script>
+    <div class="row mt-3">
+        <div class="col-8 offset-3">
+            <h2>Show posting</h2>
+        </div>
+    <div class="card col-6 offset-3 show-card">
+        <img src="<%= posting.image[0].url %>" class="card-img-top show-img" alt="Posting Image">
+        <div class="card-body">
+        <p class="card-text">
+            <p><i>owned by : <%= posting.owner.username %></i></p>
+            <p><b><%= posting.title %></b></p>
+            <p><%= posting.description %></p>
+            <p>&#8377; <%= posting.price.toLocaleString("en-IN") %></p>
+            <p><%= posting.location %></p>
+            <p><%= posting.country %></p>
+        </p>
+  </div>
+    </div>
+        <div class="btns">
+        <form action="/postings/<%= posting._id %>/edit">
+            <button class="btn btn-dark add-btn offset-2" style="margin-left: 330px">Edit</button>
+        </form>
+        <form method="POST" action="/postings/<%= posting._id %>?_method=DELETE">
+            <button class="btn btn-dark add-btn offset-5" style="background-color: black !important;">Delete</button>
+        </form>
+    </div>
+    <br><br>
+    <div class="col-8 offset-3">
+        <hr class="col-9">
+        <h3>Location</h3>
+        <div id="map"></div>
+        <br>
+    </div>
+    </div>
+<script src="/js/map.js"></script>

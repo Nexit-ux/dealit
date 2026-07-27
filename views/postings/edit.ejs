@@ -1,0 +1,48 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <br>
+    <h3>Edit posting</h3>
+    <form method="POST" action="/postings/<%=posting._id%>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input name="posting[title]" value="<%=posting.title%>" type="text" class="form-control" required>
+            <div class="invalid-feedback">please enter title!</div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="posting[description]" class="form-control" required><%=posting.description%></textarea> 
+            <div class="invalid-feedback">please enter description!</div>
+        </div>
+        <div class="mb-3">
+            <img class="editImg" src="<%= posting.image[0].url %>"/>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input name="posting[image]" type="file" class="form-control">
+        </div>
+        <div class="row">
+        <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input name="posting[price]" value="<%=posting.price%>" type="number" class="form-control" required>
+            <div class="invalid-feedback">please enter price!</div>
+        </div>
+        <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input name="posting[country]" value="<%=posting.country%>" type="text" class="form-control" required>
+            <div class="invalid-feedback">please enter country!</div>
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input name="posting[location]" value="<%=posting.location%>" type="text" class="form-control" required>
+            <div class="invalid-feedback">please enter location!</div>
+        </div>
+        <br>
+        <button class="btn btn-dark add-btn">Save</button>
+        <br><br>
+    </form>
+        </div>
+    </div>    
+</body>

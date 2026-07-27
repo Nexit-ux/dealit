@@ -1,0 +1,148 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container{
+    flex: 1;
+}
+
+/* Navbar */
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+.fa-files-pinwheel{
+    color: #42b883;
+    font-size: 2rem;
+}
+.nav-link{
+    color: #222222 !important;
+}
+
+/* Footer */
+.f-info-links a{
+    text-decoration: none !important;
+    color :#222222;
+}
+.f-info-links{
+    width: 100%;
+}
+.f-info-socials{
+    width: 100%;
+    font-size: 1.5rem;
+}
+.f-info-socials i{
+    margin: 0.2rem;
+}
+.f-info{
+    text-align: center;
+    display: flex;
+    background-color: #ebebeb;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+.fa-square-facebook{
+    color: #1877F2;
+}
+.fa-square-instagram{
+    color: #E1306C;
+}
+.fa-square-linkedin{
+    color: #0A66C2;
+}
+
+/* Cards */
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text p{
+    font-weight: 400 !important;
+}
+
+.posting-link{
+    text-decoration: none;
+}
+
+/* CardEffect */
+
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.15;
+    background-color: white !important;
+}
+
+.add-btn{
+    background-color : #42b883 !important;
+    border: none !important;
+}
+
+/* Show Page */
+.show-img{
+    height: 40vh;
+}
+
+.btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.editImg{
+    height: 130px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+/* map */
+
+#map{
+    height: 250px;
+    width: 500px;
+}
+
+/* search */
+
+.btn-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    background-color: #fe424d;
+    color: white;
+    font-size: 0.8rem;
+  }
+  .btn-search:hover {
+    background-color: #fe424d;
+    color: white;
+  }
+  .btn-search i{
+    display: inline;
+  }
+  .search-inp{
+    margin-left: 4rem;
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 0.8rem;
+  }
