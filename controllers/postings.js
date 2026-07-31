@@ -61,7 +61,8 @@ module.exports.showPosting = async (req , res) => {
         req.flash("error" , "Post dosen't exist");
         return res.redirect("/postings");
     }
-    res.render("postings/show.ejs" , {posting});
+    const mapToken = process.env.MAP_TOKEN;
+    res.render("postings/show.ejs" , {posting , mapToken});
 };
 
 module.exports.createPosting = async(req , res , next) => {
