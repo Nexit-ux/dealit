@@ -36,10 +36,15 @@
       </ul>
 
       <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
-      <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" aria-label="Search"/>
-      <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>  Search</button>
-      </form>
+        <form class="d-flex" role="search" action="/postings" method="GET">
+          <input 
+          class="form-control me-2 search-inp"
+          type="search" 
+          name="search" 
+          value="<%= typeof search !== 'undefined' ? search : '' %>" 
+          placeholder="           Search posts" aria-label="Search"/>
+          <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>  Search</button>
+        </form>
       </div>
 
       <ul class="navbar-nav ms-auto">
@@ -64,4 +69,3 @@
     </div>
   </div>
 </nav>
-<br><br>

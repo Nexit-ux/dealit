@@ -1,4 +1,5 @@
 const Joi = require("joi");
+const categories = require("./utils/categories");
 
 module.exports.postingSchema = Joi.object({
     posting : Joi.object({
@@ -13,5 +14,7 @@ module.exports.postingSchema = Joi.object({
                 filename: Joi.string().allow("", null),
             })
         ),
+        category: Joi.string().valid(...categories)
+    .required(),
     }).required()
 });

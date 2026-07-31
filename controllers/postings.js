@@ -5,14 +5,53 @@ express().use(flash());
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
+const categories = require("../utils/categories.js");
 
 module.exports.index = async (req , res) => {
-    const allPostings = await Posting.find({});
-    res.render("postings/index.ejs" , {allPostings});
+    const {category , search , sort} = req.query;
+    let filter = {};
+    let sortOption = {};
+    if (search) {
+        filter.$or = [
+            {
+                title: {
+                    $regex: search,
+                    $options: "i"
+                }
+            },
+            {
+                description: {
+                    $regex: search,
+                    $options: "i"
+                }
+            }
+        ];
+    }
+    if(category){
+        filter.category = category;
+    }
+    if (sort === "newest") {
+        sortOption = { createdAt: -1 };
+    }
+    else if (sort === "oldest") {
+        sortOption = { createdAt: 1 };
+    }
+    else if (sort === "lowToHigh") {
+        sortOption = { price: 1 };
+    }
+    else if (sort === "highToLow") {
+        sortOption = { price: -1 };
+    }
+    const allPostings = await Posting.find(filter).sort(sortOption);
+    if(allPostings.length === 0 && (search || category)) {
+        req.flash("error", "No items found");
+        return res.redirect("/postings");
+    }
+    res.render("postings/index.ejs" , {allPostings , category , search , sort});
 };
 
 module.exports.newForm = (req , res) => {
-    res.render("postings/new.ejs");
+    res.render("postings/new.ejs" , {categories});
 };
 
 module.exports.showPosting = async (req , res) => {
@@ -51,7 +90,7 @@ module.exports.editPosting = async (req , res) => {
         req.flash("error" , "Post dosen't exist");
         return res.redirect("/postings");
     }
-    res.render("postings/edit.ejs" , {posting});
+    res.render("postings/edit.ejs" , {posting , categories});
 };
 
 module.exports.updatePosting = async (req , res) => {

@@ -5,10 +5,21 @@
         <br>
     <h3>Create a new posting</h3>
     <form method="POST" action="/postings" class="needs-validation" novalidate enctype="multipart/form-data">
-        <div class="mb-3">
+        <div class="row">
+            <div class="mb-3 col-md-6">
             <label for="title" class="form-label">Title</label>
             <input name="posting[title]" placeholder="enter title" type="text" class="form-control" required>
             <div class="invalid-feedback">please enter title!</div>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="Category" class="form-label">Category</label>
+            <select class="form-select" name="posting[category]" id="inputGroupSelect01" required>
+                <option value="" selected disabled>select category</option>
+                <% categories.forEach(category => { %>
+                    <option value="<%= category %>"><%= category %></option>
+                <% }) %>
+            </select>
+        </div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">description</label>

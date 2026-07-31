@@ -12,68 +12,109 @@
         }
         .filter{
           text-align: center;
-          margin-right: 3.5rem;
+          margin-right: 2.7rem;
           opacity: 0.7;
+          text-decoration: none;
+          color: inherit;
         }
         .filter:hover{
           opacity: 1;
+          color: #42b883;
           cursor: pointer;
         }
         .filter p{
           font-size: 0.8rem;
         }
+        .filter.active-filter{
+            opacity: 1;
+            color: #42b883;
+        }
+        .sortFilter{
+            width: 100px !important;
+            margin-left: auto;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 2px solid #42b883;
+            /* background-color: #42b883;
+            color: aliceblue; */
+        }
+
     </style>
 
     <div id="filters">
-        <div class="filter">
-          <div><i class="fa-solid fa-car"></i></div>
-          <p>Cars</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-solid fa-motorcycle"></i></div>
-          <p>Bikes</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-solid fa-tv"></i></div>
-          <p>Electronics</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-solid fa-mobile-screen-button"></i></div>
-          <p>Mobiles</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-solid fa-couch"></i></div>
-          <p>Furniture</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-solid fa-shirt"></i></div>
-          <p>Fashion</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-regular fa-building"></i></div>
-          <p>Properties</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-solid fa-screwdriver-wrench"></i></div>
-          <p>Spares</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-solid fa-book"></i></div>
-          <p>Books</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-solid fa-baseball-bat-ball"></i></div>
-          <p>Sports</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-solid fa-ticket"></i></div>
-          <p>Tickets</p>
-        </div>
-        <div class="filter">
-          <div><i class="fa-regular fa-rectangle-list"></i></div>
-          <p>Others</p>
-        </div>
-    </div>   
+        <a href="/postings" class="filter <%= !category ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-house"></i></div>
+            <p>All</p>
+        </a>
+        <a href="/postings?category=Cars" class="filter <%= category === 'Cars' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-car"></i></div>
+            <p>Cars</p>
+        </a>
+        <a href="/postings?category=Bikes" class="filter <%= category === 'Bikes' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-motorcycle"></i></div>
+            <p>Bikes</p>
+        </a>
+        <a href="/postings?category=Mobiles" class="filter <%= category === 'Mobiles' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <p>Mobiles</p>
+        </a>
+        <a href="/postings?category=Laptops" class="filter <%= category === 'Laptops' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-laptop"></i></div>
+            <p>Laptops</p>
+        </a>
+        <a href="/postings?category=Electronics" class="filter <%= category === 'Electronics' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-tv"></i></div>
+            <p>Electronics</p>
+        </a>
+        <a href="/postings?category=Furniture" class="filter <%= category === 'Furniture' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-couch"></i></div>
+            <p>Furniture</p>
+        </a>
+        <a href="/postings?category=Fashion" class="filter <%= category === 'Fashion' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-shirt"></i></div>
+            <p>Fashion</p>
+        </a>
+        <a href="/postings?category=Properties" class="filter <%= category === 'Properties' ? 'active-filter' : '' %>">
+            <div><i class="fa-regular fa-building"></i></div>
+            <p>Properties</p>
+        </a>
+        <a href="/postings?category=Spares" class="filter <%= category === 'Spares' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <p>Spares</p>
+        </a>
+        <a href="/postings?category=Books" class="filter <%= category === 'Books' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-book"></i></div>
+            <p>Books</p>
+        </a>
+        <a href="/postings?category=Sports" class="filter <%= category === 'Sports' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-baseball-bat-ball"></i></div>
+            <p>Sports</p>
+        </a>
+        <!-- <a href="/postings?category=Tickets" class="filter <%= category === 'Tickets' ? 'active-filter' : '' %>">
+            <div><i class="fa-solid fa-ticket"></i></div>
+            <p>Tickets</p>
+        </a> -->
+        <a href="/postings?category=Others" class="filter <%= category === 'Others' ? 'active-filter' : '' %>">
+            <div><i class="fa-regular fa-rectangle-list"></i></div>
+            <p>Others</p>
+        </a>
+
+        <form action="/postings" method="GET" class="mb-3">
+        <% if(category){ %>
+            <input type="hidden" name="category" value="<%= category %>">
+        <% } %>
+        <% if(search){ %>
+            <input type="hidden" name="search" value="<%= search %>">
+        <% } %>
+        <select name="sort" class="form-select w-auto d-inline sortFilter" onchange="this.form.submit()">
+            <option value="" <%= !sort ? "selected" : "" %>>sort</option>
+            <option value="newest" <%= sort === "newest" ? "selected" : "" %>>New</option>
+            <option value="oldest" <%= sort === "oldest" ? "selected" : "" %>>Old</option>
+            <option value="lowToHigh" <%= sort === "lowToHigh" ? "selected" : "" %>>Price &#8595;</option>
+            <option value="highToLow" <%= sort === "highToLow" ? "selected" : "" %>>Price &#8593;</option>
+        </select>
+        </form>
+    </div>
 
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
         <% for(let posting of allPostings) { %>

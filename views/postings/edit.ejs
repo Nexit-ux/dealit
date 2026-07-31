@@ -5,10 +5,23 @@
             <br>
     <h3>Edit posting</h3>
     <form method="POST" action="/postings/<%=posting._id%>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
-        <div class="mb-3">
+        <div class="row">
+        <div class="mb-3 col-md-6">
             <label for="title" class="form-label">Title</label>
             <input name="posting[title]" value="<%=posting.title%>" type="text" class="form-control" required>
             <div class="invalid-feedback">please enter title!</div>
+        </div>
+        <div class="mb-3 col-md-6">
+        <label for="category" class="form-label">Category</label>
+        <select class="form-select" id="category" name="posting[category]" required>
+            <% for(let category of categories){ %>
+                <option 
+                    value="<%= category %>"
+                    <%= posting.category === category ? "selected" : "" %>><%= category %>
+                </option>
+            <% } %>
+        </select>
+        </div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
