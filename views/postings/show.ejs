@@ -8,7 +8,45 @@
             <h2>Show posting</h2>
         </div>
     <div class="card col-6 offset-3 show-card">
-        <img src="<%= posting.image[0].url %>" class="card-img-top show-img" alt="Posting Image">
+        <div id="postingCarousel" class="carousel slide">
+        <div class="carousel-indicators">
+        <% posting.image.forEach((img, index) => { %>
+            <button
+                type="button"
+                data-bs-target="#postingCarousel"
+                data-bs-slide-to="<%= index %>"
+                class="<%= index === 0 ? 'active' : '' %>"
+                aria-current="<%= index === 0 ? 'true' : 'false' %>">
+            </button>
+        <% }) %>
+    </div>
+    <div class="carousel-inner">
+        <% posting.image.forEach((img, index) => { %>
+            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                <img
+                    src="<%= img.url %>"
+                    class="d-block w-100 show-img"
+                    alt="Posting Image">
+            </div>
+        <% }) %>
+    </div>
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#postingCarousel"
+            data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#postingCarousel"
+            data-bs-slide="next">
+
+        <span class="carousel-control-next-icon"></span>
+
+    </button>
+    </div>
+        <!-- <img src="<%= posting.image[0].url %>" class="card-img-top show-img" alt="Posting Image"> -->
         <div class="card-body">
         <p class="card-text">
             <p><i>owned by : <%= posting.owner.username %></i></p>
@@ -18,7 +56,7 @@
             <p><%= posting.location %></p>
             <p><%= posting.country %></p>
         </p>
-  </div>
+        </div>
     </div>
         <div class="btns">
         <form action="/postings/<%= posting._id %>/edit">

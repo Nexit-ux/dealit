@@ -71,12 +71,12 @@ module.exports.createPosting = async(req , res , next) => {
     limit: 1
     })
     .send()
-
-    let url = req.file.path;
-    let filename = req.file.filename;
     let posting = new Posting(req.body.posting);
     posting.owner = req.user._id;
-    posting.image = {url , filename};
+    posting.image = req.files.map(file => ({
+        url: file.path,
+        filename: file.filename,
+    }));
     posting.geometry = response.body.features[0].geometry;
     let saved = await posting.save();
     console.log(saved);

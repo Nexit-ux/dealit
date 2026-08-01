@@ -17,13 +17,13 @@ router.get("/new" , isLoggedIn , postingController.newForm);
 router.get("/:id" , wrapAsync(postingController.showPosting));
 
 //create route
-router.post("/" , isLoggedIn , upload.single('posting[image]') , validatePosting  , wrapAsync(postingController.createPosting));
+router.post("/" , isLoggedIn , upload.array('posting[image]' , 5) , validatePosting  , wrapAsync(postingController.createPosting));
 
 //edit route
 router.get("/:id/edit" , isLoggedIn , isOwner , wrapAsync(postingController.editPosting));
 
 //update route
-router.put("/:id" , isLoggedIn , isOwner , upload.single('posting[image]') , validatePosting , wrapAsync(postingController.updatePosting));
+router.put("/:id" , isLoggedIn , isOwner , upload.array('posting[image]' , 5) , validatePosting , wrapAsync(postingController.updatePosting));
 
 //Delete route
 router.delete("/:id" , isLoggedIn , isOwner , wrapAsync(postingController.deletePosting));
